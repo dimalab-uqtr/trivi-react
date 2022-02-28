@@ -69,7 +69,6 @@ export default () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     fetchRequest(
       `dimadb/get-recommend-api/`,
       "POST",
@@ -128,6 +127,7 @@ export default () => {
 
   const handleChangeRecommendLevel = (item) => {
     if (item === "Domain") {
+      setItem('');
       if (itemType === "events") {
         setListDomains(listEventTypes);
       } else if (itemType === "products") {
@@ -136,6 +136,8 @@ export default () => {
         setListDomains([]);
       }
     } else if (item === "Item") {
+      setRecommendType('Similar');
+      setDomain('');
       if (itemType === "events") {
         setListItems(listEvents);
       } else if (itemType === "products") {
@@ -144,6 +146,8 @@ export default () => {
         setListItems([]);
       }
     } else {
+      setDomain('');
+      setItem('');
       setListDomains([]);
       setListItems([]);
     }

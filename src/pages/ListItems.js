@@ -144,7 +144,7 @@ export default () => {
               className="m-1"
               onClick={() => handleImportHistory()}
             >
-              Import history
+              Delete {itemType}(s)
             </Button>
           </Col>
           <Col xs={3} className="mb-4">

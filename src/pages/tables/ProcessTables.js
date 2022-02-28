@@ -39,19 +39,30 @@ export default ({ columns, data, isViewDetail = false, handleViewDetail, isClick
   );
   const indexItems = [];
   const totalPages = Math.ceil(data.length / pageSize);
+  const range = 3;
 
   for (let number = 0; number < totalPages; number++) {
     const isItemActive = pageIndex === number;
 
-    indexItems.push(
-      <Pagination.Item
-        active={isItemActive}
-        key={number}
-        onClick={() => gotoPage(number)}
-      >
-        {number + 1}
-      </Pagination.Item>
-    );
+    if (number == pageIndex - range - 1) {
+      indexItems.push(
+        <Pagination.Ellipsis onClick={() => gotoPage(number)}/>
+      );
+    } else if (number == pageIndex + range + 1) {
+      indexItems.push(
+        <Pagination.Ellipsis onClick={() => gotoPage(number)}/>
+      );
+    } else if (number >= pageIndex - range && number <= pageIndex + range) {
+      indexItems.push(
+        <Pagination.Item
+          active={isItemActive}
+          key={number}
+          onClick={() => gotoPage(number)}
+        >
+          {number + 1}
+        </Pagination.Item>
+      );
+    }
   }
 
   const onClickRow = (index, row) => {
