@@ -1,4 +1,4 @@
-export const domainPath = "http://138.197.135.120:8000/"
+export const domainPath = "http://74.208.108.4:8000/"
 
 
 

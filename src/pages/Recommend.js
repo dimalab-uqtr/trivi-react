@@ -14,7 +14,6 @@ import { AppContext } from "./AppContext";
 export default () => {
   TabTitle("Recommend");
 
-  const listLevels = ["Homepage", "Domain", "Item"];
   const listItemTypes = [
     {
       name: "Événements",
@@ -25,21 +24,18 @@ export default () => {
       value: "products",
     },
   ];
-  const listRecommendTypes = ["Upcoming", "Most popular"];
 
   const { fetchRequest } = useContext(AppContext);
+  const [listRecommendLevels, setRecommendLevels] = useState({});
   const [level, setLevel] = useState("");
   const [itemType, setItemType] = useState("");
   const [recommendType, setRecommendType] = useState("");
   const [quantity, setQuantity] = useState("10");
   const [listDomains, setListDomains] = useState([]);
+  const [listItemInfos, setItemInfos] = useState({});
   const [listItems, setListItems] = useState([]);
   const [domain, setDomain] = useState("");
   const [item, setItem] = useState("");
-  const [listEvents, setListEvents] = useState([]);
-  const [listProducts, setListProducts] = useState([]);
-  const [listEventTypes, setListEventTypes] = useState([]);
-  const [listArticleTypes, setListArticleTypes] = useState([]);
   const [isSubmitted, setSubmit] = useState(false);
   const [listResults, setListResults] = useState([]);
   const [api, setAPI] = useState("");
@@ -56,10 +52,8 @@ export default () => {
     fetchRequest(`dimadb/get-recommend-info/`, "GET")
       .then((data) => {
         if (data != undefined) {    
-          setListEvents(data.events);
-          setListProducts(data.products);
-          setListEventTypes(data.eventTypes);
-          setListArticleTypes(data.articleTypes);
+          setRecommendLevels(data.recommendLevels);
+          setItemInfos(data.listItemInfos);
         }
       })
       .catch((err) => {
@@ -102,18 +96,14 @@ export default () => {
 
   const handleChangeItemType = (item) => {
     if (level === "Domain") {
-      if (item === "events") {
-        setListDomains(listEventTypes);
-      } else if (item === "products") {
-        setListDomains(listArticleTypes);
+      if (item !== "") {
+        setListDomains(listItemInfos[item]['types']);
       } else {
         setListDomains([]);
       }
     } else if (level === "Item") {
-      if (item === "events") {
-        setListItems(listEvents);
-      } else if (item === "products") {
-        setListItems(listProducts);
+      if (item !== "") {
+        setListItems(listItemInfos[item]['items']);
       } else {
         setListItems([]);
       }
@@ -128,20 +118,15 @@ export default () => {
   const handleChangeRecommendLevel = (item) => {
     if (item === "Domain") {
       setItem('');
-      if (itemType === "events") {
-        setListDomains(listEventTypes);
-      } else if (itemType === "products") {
-        setListDomains(listArticleTypes);
+      if (itemType !== "") {
+        setListDomains(listItemInfos[itemType]['types']);
       } else {
         setListDomains([]);
       }
     } else if (item === "Item") {
-      setRecommendType('Similar');
       setDomain('');
-      if (itemType === "events") {
-        setListItems(listEvents);
-      } else if (itemType === "products") {
-        setListItems(listProducts);
+      if (itemType !== "") {
+        setListItems(listItemInfos[itemType]['items']);
       } else {
         setListItems([]);
       }
@@ -177,11 +162,11 @@ export default () => {
                       required
                     >
                       <option value="">Open this select menu</option>
-                      {listItemTypes.map((item, index) => (
-                        <option value={item["value"]} key={index}>
-                          {item["name"]}
+                      {listItemInfos ? Object.keys(listItemInfos).map((item, index) => (
+                        <option value={item} key={index}>
+                          {listItemInfos[item]['name']}
                         </option>
-                      ))}
+                      )) : <></>}
                     </Form.Control>
                   </Form.Group>
                   <Form.Group className="mb-3 col-6">
@@ -195,7 +180,7 @@ export default () => {
                       required
                     >
                       <option value="">Open this select menu</option>
-                      {listLevels.map((item, index) => (
+                      {Object.keys(listRecommendLevels).map((item, index) => (
                         <option value={item} key={index}>
                           {item}
                         </option>
@@ -246,26 +231,22 @@ export default () => {
                   ) : (
                     <></>
                   )}
-                  {level === "Homepage" || level === "Domain" ? (
-                    <Form.Group className="mb-3 col-6">
-                      <Form.Label>Recommend Type</Form.Label>
-                      <Form.Control
-                        as="select"
-                        value={recommendType}
-                        onChange={(e) => setRecommendType(e.target.value)}
-                        required
-                      >
-                        <option value="">Open this select menu</option>
-                        {listRecommendTypes.map((item, index) => (
-                          <option value={item} key={index}>
-                            {item}
-                          </option>
-                        ))}
-                      </Form.Control>
-                    </Form.Group>
-                  ) : (
-                    <></>
-                  )}
+                  <Form.Group className="mb-3 col-6">
+                    <Form.Label>Recommend Type</Form.Label>
+                    <Form.Control
+                      as="select"
+                      value={recommendType}
+                      onChange={(e) => setRecommendType(e.target.value)}
+                      required
+                    >
+                      <option value="">Open this select menu</option>
+                      {listRecommendLevels[level] ? listRecommendLevels[level].map((item, index) => (
+                        <option value={item} key={index}>
+                          {item}
+                        </option>
+                      )) : <></>}
+                    </Form.Control>
+                  </Form.Group>
                   <Form.Group className="mb-3 col-6">
                     <Form.Label>Quantity</Form.Label>
                     <Form.Control
