@@ -89,7 +89,7 @@ export default ({ rawChart }) => {
         labels.length == 2
           ? [
               {
-                name: "",
+                name: "Total",
                 data: data,
                 colorByPoint: true,
               },
