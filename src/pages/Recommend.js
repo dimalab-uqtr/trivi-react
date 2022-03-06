@@ -40,7 +40,8 @@ export default () => {
   const [listResults, setListResults] = useState([]);
   const [api, setAPI] = useState("");
   const [apiKey, setAPIKey] = useState("");
-  const [embeddedLink, setEmbeddedLink] = useState("");
+  const [embeddedLinkNotGui, setembeddedLinkNotGui] = useState("");
+  const [embeddedLinkGui, setembeddedLinkGui] = useState("");
 
   const columns = listResults.length
     ? Object.keys(listResults[0]).map((key) => {
@@ -82,7 +83,8 @@ export default () => {
             setListResults(data.items);
             setAPI(data.api);
             setAPIKey(data.apiKey);
-            setEmbeddedLink(data.embeddedLink)
+            setembeddedLinkNotGui(data.embeddedLinkNotGui);
+            setembeddedLinkGui(data.embeddedLinkGui)
           } else {
             setSubmit(false);
           }
@@ -285,9 +287,15 @@ export default () => {
                       </Form.Group>
                       <Form.Group className="mb-3 col-12">
                         <Form.Label className="h2">
-                          Embedded Link
+                          Embedded Link Without GUI
                         </Form.Label>
-                        <Form.Control as="textarea" value={embeddedLink} rows={15} readOnly />
+                        <Form.Control as="textarea" value={embeddedLinkNotGui} rows={15} readOnly />
+                      </Form.Group>
+                      <Form.Group className="mb-3 col-12">
+                        <Form.Label className="h2">
+                          Embedded Link With GUI
+                        </Form.Label>
+                        <Form.Control as="textarea" value={embeddedLinkGui} rows={15} readOnly />
                       </Form.Group>
                     </Form>
                     <Container className="px-0">
