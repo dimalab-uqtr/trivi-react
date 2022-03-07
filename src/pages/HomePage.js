@@ -18,6 +18,7 @@ import ServerError from "./examples/ServerError";
 import DashboardOverview from "./DashboardOverview";
 import ForgotPassword from "./ForgotPassword";
 import ImportHistory from "./ImportHistory";
+import SynchronizeGA from "./SynchronizeGA";
 
 // components
 import Sidebar from "../components/Sidebar";
@@ -164,6 +165,12 @@ export default () => (
     />
     <RouteWithSidebar
       exact
+      key="google-analytic-report"
+      path={Routes.GoogleAnalyticReports.path}
+      component={ListItems}
+    />
+    <RouteWithSidebar
+      exact
       key="event"
       path={Routes.Events.path}
       component={ListItems}
@@ -173,6 +180,11 @@ export default () => (
       key="article"
       path={Routes.Articles.path}
       component={ListItems}
+    />
+    <RouteWithSidebar
+      exact
+      path={Routes.SynchronizeGA.path}
+      component={SynchronizeGA}
     />
     <RouteWithSidebar path={Routes.ItemDetail.path} component={Form} />
     <RouteWithSidebar path={Routes.ImportAPI.path} component={ImportAPI} />

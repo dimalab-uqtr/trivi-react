@@ -79,6 +79,11 @@ export default () => {
     history.push(url);
   };
 
+  const handleSynchronizeGA = () => {
+    const url = `/data-management/synchronize-google-analytic`;
+    history.push(url);
+  }
+
   const searchKeyWord = (keyword) => {
     if (keyword === "") {
       setAllItems(items, 2);
@@ -120,20 +125,44 @@ export default () => {
             ) : (
               <></>
             )}
-            <Button
-              variant="secondary"
-              className="m-1"
-              onClick={() => handleImportFile()}
-            >
-              Import File
-            </Button>
-            <Button
-              variant="warning"
-              className="m-1"
-              onClick={() => handleImportAPI()}
-            >
-              Import API
-            </Button>
+            {
+              itemType !== 'google-analytic-report' ? (
+                <Button
+                  variant="secondary"
+                  className="m-1"
+                  onClick={() => handleImportFile()}
+                >
+                  Import File
+                </Button>
+              ) : (<></>
+              )
+            }
+            {
+              itemType !== 'google-analytic-report' ? (
+                <Button
+                  variant="warning"
+                  className="m-1"
+                  onClick={() => handleImportAPI()}
+                >
+                  Import API
+                </Button>
+              ) : (
+                <></>
+              )
+            }
+            {
+              itemType == 'google-analytic-report' ? (
+                <Button
+                  variant="warning"
+                  className="m-1"
+                  onClick={() => handleSynchronizeGA()}
+                >
+                  Synchronize GA
+                </Button>
+              ) : (
+                <></>
+              )
+            }
             <Button variant="tertiary" className="m-1">
               <CSVLink data={searchItems} headers={headerKeys}>
                 Export CSV

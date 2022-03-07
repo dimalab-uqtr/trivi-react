@@ -182,6 +182,7 @@ export default (props = {}) => {
               >
                 <NavItem title="Événement" link={Routes.Events.path} />
                 <NavItem title="Article" link={Routes.Articles.path} />
+                <NavItem title="Google Analytics" link={Routes.GoogleAnalyticReports.path} />
                 <NavItem
                   title="Activité de web"
                   link={Routes.Activities.path}

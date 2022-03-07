@@ -23,6 +23,7 @@ export const Routes = {
     Profile: {path: "/profile"},
     ItemDetail: {path: "/data-management/detail/"},
     Activities: { path: "/data-management/list/web-activity"},
+    GoogleAnalyticReports: { path: "/data-management/list/google-analytic-report"},
     Events: { path: "/data-management/list/event"},
     Articles: { path: "/data-management/list/article"},
     ListItems: { path: "/data-management/list/" },
@@ -30,6 +31,7 @@ export const Routes = {
     ImportFile: { path: "/data-management/import-file/" },
     ImportHistory: { path: "/data-management/import-history"},
     DeleteItems: { path: "/data-management/delete-items/"},
+    SynchronizeGA: { path: "/data-management/synchronize-google-analytic"},
 
     // docs
     DocsOverview: { path: "/documentation/overview" },
