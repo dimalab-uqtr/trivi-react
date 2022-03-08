@@ -56,7 +56,7 @@ export default class Signin extends Component {
           localStorage.setItem('userName', json.user.username);
           this.props.history.push("/");
         } else {
-          alert("Your account is invalid");
+          alert("Votre compte utilisateur est invalide");
         }
       })
       .catch((err) => alert(err));
@@ -79,7 +79,7 @@ export default class Signin extends Component {
               >
                 <div className="bg-white shadow-soft border rounded border-primary p-4 p-lg-5 w-100 fmxw-500">
                   <div className="text-center text-md-center mb-4 mt-md-0">
-                    <h3 className="mb-0">Sign in to RecomSys</h3>
+                    <h3 className="mb-0">Se connecter à RecomSys</h3>
                   </div>
                   <div className="text-center text-md-center mb-4 mt-md-0">
                     <Image className="" src={ReactLogo} height={80} />
@@ -89,7 +89,7 @@ export default class Signin extends Component {
                     onSubmit={(e) => this.handleLogin(e, this.state)}
                   >
                     <Form.Group id="email" className="mb-4">
-                      <Form.Label>Your Email</Form.Label>
+                      <Form.Label>Email</Form.Label>
                       <InputGroup>
                         <InputGroup.Text>
                           <FontAwesomeIcon icon={faEnvelope} />
@@ -107,7 +107,7 @@ export default class Signin extends Component {
                     </Form.Group>
                     <Form.Group>
                       <Form.Group id="password" className="mb-4">
-                        <Form.Label>Your Password</Form.Label>
+                        <Form.Label>Mot de passe</Form.Label>
                         <InputGroup>
                           <InputGroup.Text>
                             <FontAwesomeIcon icon={faUnlockAlt} />
@@ -129,7 +129,7 @@ export default class Signin extends Component {
                       </div> */}
                     </Form.Group>
                     <Button variant="primary" type="submit" className="w-100">
-                      Sign in
+                      Se connecter
                     </Button>
                   </Form>
                 </div>

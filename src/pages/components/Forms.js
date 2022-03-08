@@ -130,7 +130,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";`}
   <Form.Group className="mb-3">
     <Form.Label>Example select</Form.Label>
     <Form.Select>
-      <option defaultValue>Open this select menu</option>
+      <option defaultValue>Dérouler ce menu de sélection</option>
       <option>One</option>
       <option>Two</option>
       <option>Three</option>
@@ -148,7 +148,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";`}
   <Form.Group className="mb-3">
     <Form.Label>Example multiple select</Form.Label>
     <Form.Select multiple>
-      <option defaultValue>Open this select menu</option>
+      <option defaultValue>Dérouler ce menu de sélection</option>
       <option>One</option>
       <option>Two</option>
       <option>Three</option>

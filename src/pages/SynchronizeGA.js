@@ -13,42 +13,70 @@ import { AppContext } from "./AppContext";
 
 
 export default () => {  
+  const refFile = useRef(null);
   const {fetchRequest} = useContext(AppContext);
   const history = useHistory();
   const [showModal, setShowModal] = useState(false);
   const [startDate, setStartDate] = useState('2021-01-01');
   const [endDate, setEndDate] = useState((new Date()).toISOString().split('T')[0]);
+  const [inputFile, setInputFile] = useState(null);
+  const [inputFileName, setInputFileName] = useState('');
+  const [listGAVersions, setListGAVersions] = useState([]);
+  const [gaVersion, setGAVersion] = useState('');
+  const [viewID, setViewID] = useState('');
 
-  TabTitle(`Synchronize Google Analytic Data`);
+  TabTitle(`Synchroniser des données Google Analytics`);
 
   useEffect(() => {
     fetchRequest(`dimadb/get-synchronize-end-date/`, 'GET')
     .then((data) => {
       if (data !== undefined) {
         setStartDate(data.endDate);
+        setListGAVersions(data.listGAVersions);
+        setGAVersion(data.gaVersion);
+        setViewID(data.gaViewID);
+        setInputFileName(data.gaJSONKeyFile);
       }
     }).catch((err) => alert(err));
   }, []);
 
   const handleOpenModal = (e) => {
     e.preventDefault();
-    setShowModal(true);
+
+    if (inputFileName)
+        setShowModal(true);
   };
 
   const handleCloseModal = () => {setShowModal(false)};
 
+  const onChangeFile = (e) => {
+    setInputFile(e.target.files[0]);
+    setInputFileName(e.target.files[0].name);
+  }
+
+  const handleChooseFile = () => {
+    refFile.current.click();
+  }
 
   const handleSynchronizeGA = (e) => {
     if (startDate < endDate) {
-        fetchRequest(`dimadb/synchronize-google-analytic/?startDate=${startDate}&endDate=${endDate}`, 'GET')
+        let data = new FormData();
+        data.append("files[]", inputFile);
+        data.append("jsonKeyFileName", inputFileName);
+        data.append("gaVersion", gaVersion);
+        data.append("viewID", viewID);
+        data.append("startDate", startDate);
+        data.append("endDate", endDate);
+        
+        fetchRequest(`dimadb/synchronize-google-analytic/`, 'POST', data, false)
         .then((data) => {
             if (data !== undefined) {
-                alert("Finished synchronizing Google Analytics data")
+                alert("Synchronisation des données Google Analytics terminée")
             }
           history.go(0);
         }).catch((err) => alert(err));
     } else {
-        alert("End date must be after start date")
+        alert("La date de fin doit être postérieure à la date de début")
     }
   };
 
@@ -63,6 +91,54 @@ export default () => {
         <Row className="d-flex flex-wrap flex-md-nowrap align-items-center py-3">
           <Col xs={12} className="mb-4">
           <Form className="row" onSubmit={(e) => handleOpenModal(e)}>
+                {
+                    listGAVersions.length ? 
+                    <Form.Group className="mb-3 col-6">
+                        <Form.Label>Version de Google Analytics</Form.Label>
+                        <Form.Control
+                        as="select"
+                        value={gaVersion}
+                        onChange={(e) => setGAVersion(e.target.value)}
+                        required
+                        >
+                        <option value="">Dérouler ce menu de sélection</option>
+                        {listGAVersions.map((item, index) => (
+                            <option value={item.value} key={index}>
+                                {item.name}
+                            </option>
+                        ))}
+                        </Form.Control>
+                    </Form.Group>  : <></>
+                }
+                <Form.Group className="mb-3 col-6">
+                    <Form.Label>View ID/Profile ID</Form.Label>
+                    <Form.Control
+                        type="text"
+                        value={viewID}
+                        onChange={(e) => {
+                        setViewID(e.target.value);
+                        }}
+                        required
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3 col-6">
+                    <Form.Label>Télécharger le fichier de clé JSON</Form.Label>
+                    <Form.Control 
+                        type="text"
+                        value={inputFileName ? inputFileName : "Choisir un fichier de json"}
+                        onClick={() => handleChooseFile()}
+                        readOnly
+                    />
+                    <input
+                        type="file"
+                        accept="application/JSON"
+                        id="file"
+                        ref={refFile}
+                        style={{ display: "none" }}
+                        onChange={(e) => onChangeFile(e)}
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3 col-6"></Form.Group>
                 <Form.Group className="mb-3 col-6">
                     <Form.Label>Date de début</Form.Label>
                     <Form.Control
@@ -73,7 +149,7 @@ export default () => {
                         }}
                         max={endDate}
                     />
-                    </Form.Group>
+                </Form.Group>
                 <Form.Group className="mb-3 col-6">
                     <Form.Label>Date de fin</Form.Label>
                     <Form.Control type="date" 
@@ -87,7 +163,7 @@ export default () => {
                     <div className="col text-center">
                         <React.Fragment>
                         <Button variant="primary" className="m-1" type="submit">
-                            Synchronize
+                            Synchroniser
                         </Button>
                         <Modal
                             as={Modal.Dialog}
@@ -96,7 +172,7 @@ export default () => {
                             onHide={handleCloseModal}
                         >
                             <Modal.Header>
-                            <Modal.Title className="h6">Synchronize</Modal.Title>
+                            <Modal.Title className="h6">Synchroniser</Modal.Title>
                             <Button
                                 variant="close"
                                 aria-label="Close"
@@ -104,7 +180,7 @@ export default () => {
                             />
                             </Modal.Header>
                             <Modal.Body>
-                            <p>Do you want to synchronize data with Google Analytics?</p>
+                            <p>Veuillez-vous synchroniser les données avec Google Analytics ?</p>
                             </Modal.Body>
                             <Modal.Footer>
                             <Button
@@ -114,14 +190,14 @@ export default () => {
                                 handleSynchronizeGA(e);
                                 }}
                             >
-                                Yes
+                                Oui
                             </Button>
                             <Button
                                 variant="link"
                                 className="text-gray ms-auto"
                                 onClick={handleCloseModal}
                             >
-                                No
+                                Non
                             </Button>
                             </Modal.Footer>
                         </Modal>

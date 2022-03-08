@@ -171,7 +171,7 @@ export default (props = {}) => {
                 image={Logo}
               />
               <NavItem
-                title="Tableau de bord"
+                title="Tableaux de bord"
                 link={Routes.DashboardOverview.path}
                 icon={faChartPie}
               />
@@ -180,11 +180,10 @@ export default (props = {}) => {
                 title="Gestion des données"
                 icon={faShareAlt}
               >
-                <NavItem title="Événement" link={Routes.Events.path} />
-                <NavItem title="Article" link={Routes.Articles.path} />
-                <NavItem title="Google Analytics" link={Routes.GoogleAnalyticReports.path} />
+                <NavItem title="Événements" link={Routes.Events.path} />
+                <NavItem title="Articles" link={Routes.Articles.path} />
                 <NavItem
-                  title="Activité de web"
+                  title="Activités Web"
                   link={Routes.Activities.path}
                 />
               </CollapsableNavItem>
@@ -203,7 +202,7 @@ export default (props = {}) => {
                   link={Routes.Configuration.path}
                 />
                 <NavItem
-                  title="Integration d'API"
+                  title="Génération des APIs"
                   link={Routes.Recommend.path}
                 />
               </CollapsableNavItem>

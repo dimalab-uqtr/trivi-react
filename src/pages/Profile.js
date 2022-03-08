@@ -32,7 +32,7 @@ export default () => {
           if (data.message)
             alert(data.message)
           else {
-            alert("Change new password successfully");
+            alert("Changer le nouveau mot de passe avec succès");
             localStorage.removeItem('token');
             localStorage.removeItem('userName');
             history.push("/sign-in");
@@ -40,7 +40,7 @@ export default () => {
         })
         .catch((err) => alert(err));
     } else {
-      alert("Confirmed password must be matched new password")
+      alert("Le mot de passe confirmé doit être identique au nouveau mot de passe")
     }
   }
 
@@ -58,14 +58,14 @@ export default () => {
       <Container className="px-0">
         <Row className="d-flex flex-wrap flex-md-nowrap align-items-center pt-3">
           <Col className="d-block mb-2 mb-md-0">
-            <h1 className="h2">Change Password</h1>
+            <h1 className="h2">Changer mot de passe</h1>
           </Col>
         </Row>
         <Row className="d-flex flex-wrap flex-md-nowrap align-items-center py-3">
           <Form className="row" onSubmit={(e) => handleOpenModal(e)}>
             <Col xs={12} className="mb-4">
               <Form.Group className="mb-3 col-6">
-                <Form.Label>New Password</Form.Label>
+                <Form.Label>Nouveau mot de passe</Form.Label>
                 <Form.Control
                   minlength="5"
                   type="password"
@@ -77,7 +77,7 @@ export default () => {
             </Col>
             <Col xs={12} className="mb-4">
                 <Form.Group className="mb-3 col-6">
-                  <Form.Label>Confirmed Password</Form.Label>
+                  <Form.Label>Mot de passe confirmé</Form.Label>
                   <Form.Control
                     minlength="5"
                     type="password"
@@ -90,7 +90,7 @@ export default () => {
                   <div className="col text-center">
                     <React.Fragment>
                       <Button variant="primary" className="m-1" type="submit">
-                        Submit
+                        Changer
                       </Button>
                       <Modal
                         as={Modal.Dialog}
@@ -108,7 +108,7 @@ export default () => {
                         </Modal.Header>
                         <Modal.Body>
                           <p>
-                            Do you want to change new password?
+                          Veuillez-vous changer de mot de passe ?
                           </p>
                         </Modal.Body>
                         <Modal.Footer>
@@ -119,14 +119,14 @@ export default () => {
                               handleChangePassword(e);
                             }}
                           >
-                            Yes
+                            Oui
                           </Button>
                           <Button
                             variant="link"
                             className="text-gray ms-auto"
                             onClick={handleCloseModal}
                           >
-                            No
+                            Non
                           </Button>
                         </Modal.Footer>
                       </Modal>

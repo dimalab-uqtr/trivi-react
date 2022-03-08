@@ -146,7 +146,7 @@ export default ({ columns, data, isViewDetail = false, handleViewDetail, isClick
             onSelect={(e) => setPageSize(Number(e))}
             className="m-1"
           >
-            <Button variant="light">{`Show ${pageSize} entries`}</Button>
+            <Button variant="light">{`Afficher ${pageSize} objets`}</Button>
             <Dropdown.Toggle split variant="light">
               <FontAwesomeIcon icon={faAngleDown} className="dropdown-arrow" />
             </Dropdown.Toggle>
@@ -165,11 +165,11 @@ export default ({ columns, data, isViewDetail = false, handleViewDetail, isClick
               onClick={() => previousPage()}
               disabled={!canPreviousPage}
             >
-              {"Previous"}
+              {"Précédent"}
             </Pagination.Prev>
             {indexItems}
             <Pagination.Next onClick={() => nextPage()} disabled={!canNextPage}>
-              {"Next"}
+              {"Suivant"}
             </Pagination.Next>
           </Pagination>
         </Col>

@@ -42,7 +42,7 @@ export default (props) => {
               </Dropdown.Toggle>
               <Dropdown.Menu className="user-dropdown dropdown-menu-right mt-2">
                 <Dropdown.Item className="fw-bold" as={Link} to={Routes.Profile.path}>
-                  <FontAwesomeIcon icon={faUserCircle} className="me-2" /> Changer mot de pass
+                  <FontAwesomeIcon icon={faUserCircle} className="me-2" /> Changer mot de passe
                 </Dropdown.Item>
 
                 {/* <Dropdown.Item className="fw-bold">

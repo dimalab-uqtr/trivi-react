@@ -86,17 +86,17 @@ export default () => {
                   <Nav fill variant="pills" className="flex-column flex-sm-row">
                     <Nav.Item>
                       <Nav.Link eventKey="home" className="mb-sm-3 mb-md-0">
-                        Most Popular Products Recommender
+                       Items les plus populaires
                       </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
                       <Nav.Link eventKey="profile" className="mb-sm-3 mb-md-0">
-                        Upcoming Event Recommender
+                       Items à venir
                       </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
                       <Nav.Link eventKey="messages" className="mb-sm-3 mb-md-0">
-                        Similar Products Recommender
+                       Items similaires
                       </Nav.Link>
                     </Nav.Item>
                   </Nav>
@@ -109,7 +109,7 @@ export default () => {
                         <Row>
                           {Object.keys(webActivityInfo).map((key, index) => (
                             <Form.Group className="mb-3 col-6" key={index}>
-                              <Form.Label>{`${key} weight`}</Form.Label>
+                              <Form.Label>{`${key}`}</Form.Label>
                               <Form.Control
                                 type="number"
                                 value={webActivityInfo[key]}
@@ -127,7 +127,7 @@ export default () => {
                             type="submit"
                             style={{ width: 150 }}
                           >
-                            Save weight
+                            Sauvegarder les pondérations
                           </Button>
                         </Row>
                       </Form>
@@ -140,14 +140,14 @@ export default () => {
                         onSubmit={(e) => handleSubmitSimilar(e)}
                       >
                         <Form.Group className="mb-3 col-6">
-                          <Form.Label>Item Type</Form.Label>
+                          <Form.Label>Types d’items</Form.Label>
                           <Form.Control
                             as="select"
                             value={itemType}
                             onChange={(e) => setItemType(e.target.value)}
                             required
                           >
-                            <option value="">Open this select menu</option>
+                            <option value="">Dérouler ce menu de sélection</option>
                             {listItemTypes.map((item, index) => (
                               <option value={item["value"]} key={index}>
                                 {item["name"]}
@@ -158,18 +158,18 @@ export default () => {
                         <Row className="d-flex justify-content-center flex-nowrap">
                           <Button
                             variant="primary"
-                            className="m-1 mb-3"
+                            className="m-1 mb-5"
                             type="submit"
                             style={{ width: 150 }}
                           >
-                            Training
+                            Entraîner
                           </Button>
                         </Row>
                       </Form>
                       <Row className="d-flex flex-wrap flex-md-nowrap align-items-center py-4">
                         <Col className="d-block mb-4 mb-md-0">
                           <h1 className="h2">
-                            Training history
+                            Historique de la formation d'algorithme
                           </h1>
                         </Col>
                       </Row>

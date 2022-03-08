@@ -12,6 +12,7 @@ import { useHistory, useLocation } from "react-router";
 import ProcessTables from "./tables/ProcessTables";
 import { TabTitle } from "../constants/generalFunctions";
 import { AppContext } from "./AppContext";
+import { itemTypeFrench } from "../constants/utils";
 
 export default () => {
   TabTitle("Import History");
@@ -72,7 +73,7 @@ export default () => {
       <Container className="px-0">
         <Row className="d-flex flex-wrap flex-md-nowrap align-items-center py-4">
           <Col className="d-block mb-4 mb-md-0">
-            <h1 className="h2">Import History</h1>
+            <h1 className="h2">Historique des importations de fichier/API - {itemTypeFrench[itemType]}</h1>
           </Col>
         </Row>
         <Row>
@@ -106,7 +107,7 @@ export default () => {
             isViewDetail={false}
             handleViewDetail={() => {}}
             isClick={true}
-            clickTitle={'View records'}
+            clickTitle={'Afficher ce fichier'}
             handleClick={handleClick}
           />
         ) : (

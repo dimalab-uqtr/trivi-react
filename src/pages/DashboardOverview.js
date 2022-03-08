@@ -126,7 +126,7 @@ export default () => {
       <Row className="mt-3 justify-content-md-center">
         <Col xs={12} sm={6} xl={4} className="mb-4">
           <CounterWidget
-            title={`${sessions} Web Sessions`}
+            title={`${sessions} Sessions Web`}
             period="All time"
             icon={faChartLine}
             iconColor="shape-secondary"
@@ -134,7 +134,7 @@ export default () => {
         </Col>
         <Col xs={12} sm={6} xl={4} className="mb-4">
           <CounterWidget
-            title={`${webActivities} Web Activities`}
+            title={`${webActivities} Activités Web`}
             period="All time"
             icon={faCashRegister}
             iconColor="shape-tertiary"
@@ -142,7 +142,7 @@ export default () => {
         </Col>
 
         <Col xs={12} sm={6} xl={4} className="mb-4">
-          <CircleChartWidget title="Traffic Share" data={trafficShares(traffic)} />
+          <CircleChartWidget title="Traffic Web" data={trafficShares(traffic)} />
         </Col>
         {charts.map((chart, index) => (
           <Col xs={12} xl={6} sm={6} className="mb-4" key={index}>

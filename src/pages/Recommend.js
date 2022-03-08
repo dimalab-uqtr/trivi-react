@@ -10,20 +10,10 @@ import {
 import ProcessTables from "./tables/ProcessTables";
 import { TabTitle } from "../constants/generalFunctions";
 import { AppContext } from "./AppContext";
+import { itemTypeFrench } from "../constants/utils";
 
 export default () => {
   TabTitle("Recommend");
-
-  const listItemTypes = [
-    {
-      name: "Événements",
-      value: "events",
-    },
-    {
-      name: "Articles",
-      value: "products",
-    },
-  ];
 
   const { fetchRequest } = useContext(AppContext);
   const [listRecommendLevels, setRecommendLevels] = useState({});
@@ -156,14 +146,14 @@ export default () => {
               <Card.Body>
                 <Form className="row" onSubmit={(e) => handleSubmit(e)}>
                   <Form.Group className="mb-3 col-6">
-                    <Form.Label>Item Type</Form.Label>
+                    <Form.Label>Types d’items</Form.Label>
                     <Form.Control
                       as="select"
                       value={itemType}
                       onChange={(e) => handleChangeItemType(e.target.value)}
                       required
                     >
-                      <option value="">Open this select menu</option>
+                      <option value="">Dérouler ce menu de sélection</option>
                       {listItemInfos ? Object.keys(listItemInfos).map((item, index) => (
                         <option value={item} key={index}>
                           {listItemInfos[item]['name']}
@@ -172,7 +162,7 @@ export default () => {
                     </Form.Control>
                   </Form.Group>
                   <Form.Group className="mb-3 col-6">
-                    <Form.Label>Recommend level</Form.Label>
+                    <Form.Label>Niveau de recommandation</Form.Label>
                     <Form.Control
                       as="select"
                       value={level}
@@ -181,7 +171,7 @@ export default () => {
                       }
                       required
                     >
-                      <option value="">Open this select menu</option>
+                      <option value="">Dérouler ce menu de sélection</option>
                       {Object.keys(listRecommendLevels).map((item, index) => (
                         <option value={item} key={index}>
                           {item}
@@ -198,7 +188,7 @@ export default () => {
                         onChange={(e) => setDomain(e.target.value)}
                         required
                       >
-                        <option value="">Open this select menu</option>
+                        <option value="">Dérouler ce menu de sélection</option>
                         {listDomains.map((item, index) => (
                           <option value={item} key={index}>
                             {item}
@@ -218,7 +208,7 @@ export default () => {
                         onChange={(e) => setItem(e.target.value)}
                         required
                       >
-                        <option value="">Open this select menu</option>
+                        <option value="">Dérouler ce menu de sélection</option>
                         {listItems.map((item, index) => (
                           <option value={item["id"]} key={index}>
                             {itemType === "events"
@@ -234,14 +224,14 @@ export default () => {
                     <></>
                   )}
                   <Form.Group className="mb-3 col-6">
-                    <Form.Label>Recommend Type</Form.Label>
+                    <Form.Label>Types de recommandation</Form.Label>
                     <Form.Control
                       as="select"
                       value={recommendType}
                       onChange={(e) => setRecommendType(e.target.value)}
                       required
                     >
-                      <option value="">Open this select menu</option>
+                      <option value="">Dérouler ce menu de sélection</option>
                       {listRecommendLevels[level] ? listRecommendLevels[level].map((item, index) => (
                         <option value={item} key={index}>
                           {item}
@@ -250,7 +240,7 @@ export default () => {
                     </Form.Control>
                   </Form.Group>
                   <Form.Group className="mb-3 col-6">
-                    <Form.Label>Quantity</Form.Label>
+                    <Form.Label>Quantité</Form.Label>
                     <Form.Control
                       type="number"
                       value={quantity}
@@ -265,7 +255,7 @@ export default () => {
                       className="d-flex flex-wrap flex-md-nowrap justify-content-center align-items-center"
                     >
                       <Button variant="primary" className="m-1" type="submit">
-                        Get API
+                      Générer une API
                       </Button>
                     </Col>
                   </Row>
@@ -275,13 +265,13 @@ export default () => {
                     <Form>
                       <Form.Group className="mb-3 col-6">
                         <Form.Label className="h2">
-                          API for integration
+                          API d'intégration
                         </Form.Label>
                         <Form.Control type="text" value={api} readOnly />
                       </Form.Group>
                       <Form.Group className="mb-3 col-6">
                         <Form.Label className="h2">
-                          API Key
+                          Clé d'API
                         </Form.Label>
                         <Form.Control type="text" value={apiKey} readOnly />
                       </Form.Group>
@@ -301,7 +291,7 @@ export default () => {
                     <Container className="px-0">
                       <Row className="d-flex flex-wrap flex-md-nowrap align-items-center py-4">
                         <Col className="d-block mb-4 mb-md-0">
-                          <h1 className="h2">Recommended {itemType}</h1>
+                          <h1 className="h2">Items recommandés</h1>
                         </Col>
                       </Row>
                       {columns.length ? (

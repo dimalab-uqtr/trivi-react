@@ -12,6 +12,7 @@ import { TabTitle } from "../constants/generalFunctions";
 import { AppContext } from "./AppContext";
 import _ from "lodash";
 import { v4 } from "uuid";
+import { itemTypeFrench } from "../constants/utils";
 
 const findPathName = (path, index, attributeName) => {
   var pathName = "";
@@ -148,7 +149,7 @@ const FormElement = ({
           value={formInfo.value}
           onChange={(e) => handleChangeValue(pathName, e.target.value)}
         >
-          <option value="">Open this select menu</option>
+          <option value="">Dérouler ce menu de sélection</option>
           {formInfo.choices.map((item, index) => (
             <option value={item} key={index}>
               {item}
@@ -176,7 +177,7 @@ const FormElement = ({
                   variant="primary"
                   className="m-1"
                   onClick={() => handleRemoveElement(pathName, index)}
-                >{`Delete`}</Button>
+                >{`Supprimer`}</Button>
               </div>
             </Row>
           ) : (
@@ -189,7 +190,7 @@ const FormElement = ({
               variant="primary"
               className="m-1"
               onClick={() => handleAddElement(pathName, cloneObj)}
-            >{`+ ADD ${attributeName.toUpperCase()}`}</Button>
+            >{`+ Ajouter ${attributeName.toUpperCase()}`}</Button>
           </div>
         </Row>
       </>
@@ -273,7 +274,7 @@ export default () => {
     )
       .then((data) => {
         alert(
-          `${id === "form" ? "Create new" : "Update"} ${itemType} successfully`
+          `${id === "form" ? "Créé" : "Mise à jour"} ce ${itemTypeFrench[itemType]}`
         );
         if (id === "form") {
           history.go(-1);
@@ -291,7 +292,7 @@ export default () => {
       JSON.stringify(formInfo)
     )
       .then((data) => {
-        alert(`Delete ${itemType} successfully`);
+        alert(`Supprimé ce ${itemTypeFrench[itemType]}`);
         history.go(-1);
       })
       .catch((err) => alert(err));
@@ -321,7 +322,7 @@ export default () => {
                     <div className="col text-center">
                       <React.Fragment>
                         <Button variant="primary" className="m-1" type="submit">
-                          Save
+                          Enregistrer
                         </Button>
                         <Modal
                           as={Modal.Dialog}
@@ -330,7 +331,7 @@ export default () => {
                           onHide={handleClose}
                         >
                           <Modal.Header>
-                            <Modal.Title className="h6">Save</Modal.Title>
+                            <Modal.Title className="h6">Enregistrer</Modal.Title>
                             <Button
                               variant="close"
                               aria-label="Close"
@@ -338,7 +339,7 @@ export default () => {
                             />
                           </Modal.Header>
                           <Modal.Body>
-                            <p>Do you want to save this {itemType} ?</p>
+                            <p>Veuillez-vous enregistrer ce {itemTypeFrench[itemType]} ?</p>
                           </Modal.Body>
                           <Modal.Footer>
                             <Button
@@ -348,14 +349,14 @@ export default () => {
                                 handleSendForm(e);
                               }}
                             >
-                              Yes
+                              Oui
                             </Button>
                             <Button
                               variant="link"
                               className="text-gray ms-auto"
                               onClick={handleClose}
                             >
-                              No
+                              Non
                             </Button>
                           </Modal.Footer>
                         </Modal>
@@ -365,14 +366,14 @@ export default () => {
                     <div className="col text-center">
                       <React.Fragment>
                         <Button variant="primary" className="m-1" type="submit">
-                          Update
+                          Mettre à jour
                         </Button>
                         <Button
                           variant="secondary"
                           className="m-1"
                           onClick={(e) => handleOpenModal(e, 1)}
                         >
-                          Delete
+                          Supprimer
                         </Button>
                         <Modal
                           as={Modal.Dialog}
@@ -382,7 +383,7 @@ export default () => {
                         >
                           <Modal.Header>
                             <Modal.Title className="h6">
-                              {formState ? "Delete" : "Update"}
+                              {formState ? "Supprimer" : "Mettre à jour"}
                             </Modal.Title>
                             <Button
                               variant="close"
@@ -392,8 +393,8 @@ export default () => {
                           </Modal.Header>
                           <Modal.Body>
                             <p>
-                              Do you want to {formState ? "delete" : "update"}{" "}
-                              {itemType} {id} ?
+                              Veuillez-vous {formState ? "supprimer" : "mettre à jour"}{" ce "}
+                              {itemTypeFrench[itemType]} {id} ?
                             </p>
                           </Modal.Body>
                           <Modal.Footer>
@@ -408,14 +409,14 @@ export default () => {
                                 }
                               }}
                             >
-                              Yes
+                              Oui
                             </Button>
                             <Button
                               variant="link"
                               className="text-gray ms-auto"
                               onClick={handleClose}
                             >
-                              No
+                              Non
                             </Button>
                           </Modal.Footer>
                         </Modal>

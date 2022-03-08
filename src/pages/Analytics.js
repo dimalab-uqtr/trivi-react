@@ -7,7 +7,28 @@ import { AppContext } from "./AppContext";
 export default () => {
   TabTitle("Data Analytics");
 
-  const listGroupTypes = ['daily', 'weekly', 'monthly', 'yearly', 'none'];
+  const listGroupTypes = [
+    {
+      "name": "Rapport quotient",
+      "value": "daily"
+    },
+    {
+      "name": "Rapport hebdomadaire",
+      "value": "weekly"
+    },
+    {
+      "name": "Rapport mensuel",
+      "value": "monthly"
+    },
+    {
+      "name": "Rapport annuel",
+      "value": "yearly"
+    },
+    {
+      "name": "Rapport de synthèse",
+      "value": "none"
+    },
+  ]
   const {fetchRequest} = useContext(AppContext);
   const [startDate, setStartDate] = useState('2021-01-01');
   const [endDate, setEndDate] = useState((new Date()).toISOString().split('T')[0]);
@@ -62,7 +83,7 @@ export default () => {
                 min={startDate}/>
             </Form.Group>
             <Form.Group className="mb-3 col-6">
-              <Form.Label>Rapports par</Form.Label>
+              <Form.Label>Types de rapports</Form.Label>
               <Form.Control
                 as="select"
                 value={groupType}
@@ -72,8 +93,8 @@ export default () => {
                 required
               >
                 {listGroupTypes.map((item, index) => (
-                  <option value={item} key={index}>
-                    {item}
+                  <option value={item.value} key={index}>
+                    {item.name}
                   </option>
                 ))}
               </Form.Control>
@@ -85,7 +106,7 @@ export default () => {
                 type="submit"
                 style={{ width: 200 }}
               >
-                Obtenir des rapports
+                Générer un rapport
               </Button>
             </Row>
           </Form>

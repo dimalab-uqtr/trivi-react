@@ -43,18 +43,18 @@ export const PageVisitsTable = ({pages}) => {
       <Card.Header>
         <Row className="align-items-center">
           <Col>
-            <h5>Page visits</h5>
+            <h5>Pages vues</h5>
           </Col>
           <Col className="text-end">
-            <Button variant="secondary" size="sm" onClick={() => setAll(!isAll)}>{isAll ? 'Show less' : 'See all'}</Button>
+            <Button variant="secondary" size="sm" onClick={() => setAll(!isAll)}>{isAll ? 'Afficher moins' : 'Afficher tous'}</Button>
           </Col>
         </Row>
       </Card.Header>
       <Table responsive className="align-items-center table-flush">
         <thead className="thead-light">
           <tr>
-            <th scope="col">Page name</th>
-            <th scope="col">Page Views</th>
+            <th scope="col">Page</th>
+            <th scope="col">Nombre de visites</th>
           </tr>
         </thead>
         <tbody>

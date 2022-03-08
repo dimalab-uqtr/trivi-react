@@ -10,6 +10,7 @@ import {
 import { useHistory, useLocation } from "react-router";
 import { TabTitle } from "../constants/generalFunctions";
 import { AppContext } from "./AppContext";
+import { itemTypeFrench } from "../constants/utils";
 
 
 export default () => {  
@@ -24,7 +25,7 @@ export default () => {
   const [listTemplates, setListTemplates] = useState([]);
   const [template, setTemplate] = useState([]);
 
-  TabTitle(`Import API - ${itemType}`);
+  TabTitle(`Importer une API - ${itemType}`);
 
   useEffect(() => {
     fetchRequest(`dimadb/get-mapping-templates/${itemType}/`, 'GET')
@@ -66,7 +67,7 @@ export default () => {
       <Container className="px-0">
         <Row className="d-flex flex-wrap flex-md-nowrap align-items-center pt-3">
           <Col className="d-block mb-2 mb-md-0">
-            <h1 className="h2">Import API - {itemType}</h1>
+            <h1 className="h2">Importer une API - {itemTypeFrench[itemType]}</h1>
           </Col>
         </Row>
         <Row className="d-flex flex-wrap flex-md-nowrap align-items-center py-3">
@@ -78,6 +79,7 @@ export default () => {
                     type="text"
                     defaultValue={urlAPI}
                     onChange={(e) => setUrl(e.target.value)}
+                    placeholder="Ex: https://dici.ca/événements/?page=1"
                     required
                     />
                 </Form.Group>
@@ -86,20 +88,21 @@ export default () => {
                     <Form.Control
                     type="text"
                     defaultValue={token}
+                    placeholder="Ex: trx4rtemn89"
                     onChange={(e) => setToken(e.target.value)}
                     />
                 </Form.Group>
                 {
                     listTemplates.length ? 
                     <Form.Group className="mb-3 col-6">
-                        <Form.Label>Mapping templates</Form.Label>
+                        <Form.Label>Choisir un mapping template</Form.Label>
                         <Form.Control
                         as="select"
                         defaultValue={template}
                         onChange={(e) => setTemplate(e.target.value)}
                         required
                         >
-                        <option value="">Open this select menu</option>
+                        <option value="">Dérouler ce menu de sélection</option>
                         {listTemplates.map((item, index) => (
                             <option value={item} key={index}>
                                 {item}
@@ -112,7 +115,7 @@ export default () => {
                     <div className="col text-center">
                         <React.Fragment>
                         <Button variant="primary" className="m-1" type="submit">
-                            Import
+                            Importer
                         </Button>
                         <Modal
                             as={Modal.Dialog}
@@ -121,7 +124,7 @@ export default () => {
                             onHide={handleCloseModal}
                         >
                             <Modal.Header>
-                            <Modal.Title className="h6">Import</Modal.Title>
+                            <Modal.Title className="h6">Importer</Modal.Title>
                             <Button
                                 variant="close"
                                 aria-label="Close"
@@ -129,7 +132,7 @@ export default () => {
                             />
                             </Modal.Header>
                             <Modal.Body>
-                            <p>Do you want to import {itemType} through this API configuration?</p>
+                            <p>Veuillez-vous importer cet API?</p>
                             </Modal.Body>
                             <Modal.Footer>
                             <Button
@@ -139,14 +142,14 @@ export default () => {
                                 handleImportAPI(e);
                                 }}
                             >
-                                Yes
+                                Oui
                             </Button>
                             <Button
                                 variant="link"
                                 className="text-gray ms-auto"
                                 onClick={handleCloseModal}
                             >
-                                No
+                                Non
                             </Button>
                             </Modal.Footer>
                         </Modal>

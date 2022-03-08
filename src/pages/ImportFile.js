@@ -10,7 +10,7 @@ import {
 import { useHistory, useLocation } from "react-router";
 import { TabTitle } from "../constants/generalFunctions";
 import { AppContext } from "./AppContext";
-
+import { itemTypeFrench } from "../constants/utils";
 
 export default () => {  
   const refFile = useRef(null);
@@ -24,7 +24,7 @@ export default () => {
   const urlArrays = location.pathname.split("/");
   const itemType = urlArrays[urlArrays.length - 1];
 
-  TabTitle(`Import API - ${itemType}`);
+  TabTitle(`Importer un fichier - ${itemTypeFrench[itemType]}`);
 
   useEffect(() => {
     fetchRequest(`dimadb/get-mapping-templates/${itemType}/`, 'GET')
@@ -73,17 +73,17 @@ export default () => {
       <Container className="px-0">
         <Row className="d-flex flex-wrap flex-md-nowrap align-items-center pt-3">
           <Col className="d-block mb-2 mb-md-0">
-            <h1 className="h2">Import File - {itemType}</h1>
+            <h1 className="h2">Importer un fichier - {itemTypeFrench[itemType]}</h1>
           </Col>
         </Row>
         <Row className="d-flex flex-wrap flex-md-nowrap align-items-center py-3">
           <Col xs={12} className="mb-4">
           <Form className="row" onSubmit={(e) => handleOpenModal(e)}>
                 <Form.Group className="mb-3 col-6">
-                    <Form.Label>Upload File</Form.Label>
+                    <Form.Label>Télécharger un fichier</Form.Label>
                     <Form.Control 
                         type="text"
-                        value={inputFile ? inputFile.name : "Choose a json file"}
+                        value={inputFile ? inputFile.name : "Choisir un fichier de json"}
                         onClick={() => handleChooseFile()}
                         readOnly
                     />
@@ -99,14 +99,15 @@ export default () => {
                 {
                     listTemplates.length ? 
                     <Form.Group className="mb-3 col-6">
-                        <Form.Label>Mapping templates</Form.Label>
+                        <Form.Label>Choisir un mapping template</Form.Label>
                         <Form.Control
                         as="select"
                         defaultValue={template}
                         onChange={(e) => setTemplate(e.target.value)}
+                        placeholder="A"
                         required
                         >
-                        <option value="">Open this select menu</option>
+                        <option value="">Dérouler ce menu de sélection</option>
                         {listTemplates.map((item, index) => (
                             <option value={item} key={index}>
                                 {item}
@@ -119,7 +120,7 @@ export default () => {
                     <div className="col text-center">
                         <React.Fragment>
                         <Button variant="primary" className="m-1" type="submit">
-                            Import
+                            Importer
                         </Button>
                         <Modal
                             as={Modal.Dialog}
@@ -136,7 +137,7 @@ export default () => {
                             />
                             </Modal.Header>
                             <Modal.Body>
-                            <p>Do you want to import this file into {itemType}?</p>
+                            <p>Veuillez-vous importer ce fichier?</p>
                             </Modal.Body>
                             <Modal.Footer>
                             <Button
@@ -146,14 +147,14 @@ export default () => {
                                 handleImportFile(e);
                                 }}
                             >
-                                Yes
+                                Oui
                             </Button>
                             <Button
                                 variant="link"
                                 className="text-gray ms-auto"
                                 onClick={handleCloseModal}
                             >
-                                No
+                                Non
                             </Button>
                             </Modal.Footer>
                         </Modal>

@@ -14,6 +14,7 @@ import { CSVLink } from "react-csv";
 import ProcessTables from "./tables/ProcessTables";
 import { TabTitle, capitalize } from "../constants/generalFunctions";
 import { AppContext } from "./AppContext";
+import { itemTypeFrench } from "../constants/utils";
 
 export default () => {
   const {fetchRequest} = useContext(AppContext);
@@ -84,6 +85,11 @@ export default () => {
     history.push(url);
   }
 
+  const handleImportGA = () => {
+    const url = `/data-management/list/google-analytic-report`;
+    history.push(url);
+  }
+
   const searchKeyWord = (keyword) => {
     if (keyword === "") {
       setAllItems(items, 2);
@@ -109,7 +115,7 @@ export default () => {
       <Container className="px-0">
         <Row className="d-flex flex-wrap flex-md-nowrap align-items-center py-4">
           <Col className="d-block mb-4 mb-md-0">
-            <h1 className="h2">Tables</h1>
+            <h1 className="h2">Liste des {itemTypeFrench[itemType]}s</h1>
           </Col>
         </Row>
         <Row>
@@ -120,7 +126,7 @@ export default () => {
                 className="m-1"
                 onClick={() => handleNewItem()}
               >
-                New {itemType}
+                Créer un {itemType}
               </Button>
             ) : (
               <></>
@@ -132,7 +138,7 @@ export default () => {
                   className="m-1"
                   onClick={() => handleImportFile()}
                 >
-                  Import File
+                  Importer un fichier
                 </Button>
               ) : (<></>
               )
@@ -144,7 +150,20 @@ export default () => {
                   className="m-1"
                   onClick={() => handleImportAPI()}
                 >
-                  Import API
+                  Importer une API
+                </Button>
+              ) : (
+                <></>
+              )
+            }
+            {
+              itemType == 'web-activity' ? (
+                <Button
+                  variant="primary"
+                  className="m-1"
+                  onClick={() => handleImportGA()}
+                >
+                  Importer GA
                 </Button>
               ) : (
                 <></>
@@ -157,7 +176,7 @@ export default () => {
                   className="m-1"
                   onClick={() => handleSynchronizeGA()}
                 >
-                  Synchronize GA
+                  Synchroniser GA
                 </Button>
               ) : (
                 <></>
@@ -165,7 +184,7 @@ export default () => {
             }
             <Button variant="tertiary" className="m-1">
               <CSVLink data={searchItems} headers={headerKeys}>
-                Export CSV
+              Exporter un fichier
               </CSVLink>
             </Button>
             <Button
@@ -173,7 +192,7 @@ export default () => {
               className="m-1"
               onClick={() => handleImportHistory()}
             >
-              Delete {itemType}(s)
+              Supprimer un fichier
             </Button>
           </Col>
           <Col xs={3} className="mb-4">
