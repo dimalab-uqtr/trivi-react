@@ -63,7 +63,7 @@ export default () => {
         recommendType: recommendType,
         quantity: quantity,
         domain: domain,
-        itemId: item,
+        itemUrl: item,
       })
     )
       .then((data) => {
@@ -210,7 +210,7 @@ export default () => {
                       >
                         <option value="">Dérouler ce menu de sélection</option>
                         {listItems.map((item, index) => (
-                          <option value={item["id"]} key={index}>
+                          <option value={item["url"]} key={index}>
                             {itemType === "events"
                               ? item["event_id"] + " - " + item["event_name"]
                               : item["product_id"] +

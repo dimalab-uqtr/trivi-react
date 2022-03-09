@@ -95,7 +95,7 @@ export default () => {
     const desktop = data['desktop'] ? data['desktop'] : 0;
     const mobile = data['mobile'] ? data['mobile'] : 0;
     const tablet = data['tablet'] ? data['tablet'] : 0;
-    const sum = desktop + mobile + tablet;
+    var sum = desktop + mobile + tablet;
     if (sum == 0)
       sum = 1
       
