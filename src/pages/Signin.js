@@ -63,7 +63,7 @@ export default class Signin extends Component {
   };
 
   render() {
-    TabTitle("Log In");
+    TabTitle("Se connecter");
 
     return (
       <main className="bg-dark vh-100">

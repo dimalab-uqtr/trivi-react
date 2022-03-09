@@ -35,7 +35,7 @@ export default () => {
       })
     : [];
 
-  TabTitle(capitalize(itemType));
+  TabTitle('Liste des ' + itemTypeFrench[itemType] + 's');
 
   useEffect(() => {
     fetchRequest(`dimadb/list-item/${itemType}/`, 'GET')

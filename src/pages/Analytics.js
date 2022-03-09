@@ -5,7 +5,7 @@ import { TabTitle } from "../constants/generalFunctions";
 import { AppContext } from "./AppContext";
 
 export default () => {
-  TabTitle("Data Analytics");
+  TabTitle("Analyse des données");
 
   const listGroupTypes = [
     {

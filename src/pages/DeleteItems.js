@@ -14,6 +14,7 @@ import { CSVLink } from "react-csv";
 import ProcessTables from "./tables/ProcessTables";
 import { TabTitle, capitalize } from "../constants/generalFunctions";
 import { AppContext } from "./AppContext";
+import { itemTypeFrench } from "../constants/utils";
 
 export default () => {
   const {fetchRequest} = useContext(AppContext);
@@ -36,7 +37,7 @@ export default () => {
       })
     : [];
 
-  TabTitle(capitalize(itemType));
+  TabTitle('Supprimer' + capitalize(itemType));
 
   useEffect(() => {
     fetchRequest(`dimadb/list-item/${itemType}/?importId=${importId}`, 'GET')
@@ -66,7 +67,7 @@ export default () => {
     )
       .then((data) => {
         if (data != undefined) {
-          alert(`Delete ${itemType} successfully`);
+          alert(`Supprimé ce ficher`);
           history.go(-1);
         }
       })
@@ -108,7 +109,7 @@ export default () => {
               className="m-1"
               onClick={() => handleDeleteAll()}
             >
-              Delete All
+              Supprimer tous
             </Button>
           </Col>
           <Col xs={3} className="mb-4">

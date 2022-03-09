@@ -211,7 +211,7 @@ export default () => {
   const itemType = urlArrays[urlArrays.length - 2];
   const id = urlArrays[urlArrays.length - 1];
 
-  TabTitle(`${id === "form" ? "New" : "Form"} ${itemType}`);
+  TabTitle(`${id === "form" ? "Nouveau" : "Formulaire de "} ${itemType}`);
 
   useEffect(() => {
     fetchRequest(`dimadb/get-item/${itemType}/${id}`, "GET")

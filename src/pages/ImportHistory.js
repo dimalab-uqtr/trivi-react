@@ -15,7 +15,7 @@ import { AppContext } from "./AppContext";
 import { itemTypeFrench } from "../constants/utils";
 
 export default () => {
-  TabTitle("Import History");
+  TabTitle("Historique des importations de fichier/API");
 
   const { fetchRequest } = useContext(AppContext);
   const history = useHistory();

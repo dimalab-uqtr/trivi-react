@@ -46,7 +46,7 @@ export default () => {
       webActivityInfo: webActivityInfo,
     })).then((data) => {
       if (data != undefined)
-        alert(`Finish updating weight`);
+        alert(`Mise à jour des pondérations terminée`);
     }).catch((err) => alert(err));
   };
 
@@ -59,7 +59,7 @@ export default () => {
     })).then((data) => {
       if (data != undefined) {
         setListItemTypes(data.similarTrainInfo)
-        alert(`Finish recommendation training`);
+        alert(`Formation algorithmique terminée`);
       }
     }).catch((err) => alert(err));
   };

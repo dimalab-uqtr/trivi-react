@@ -15,7 +15,7 @@ require("highcharts/modules/exporting")(Highcharts);
 require("highcharts/modules/export-data.js")(Highcharts);
 
 export default () => {
-  TabTitle("Dashboard");
+  TabTitle("Tableaux de bord");
 
   const {fetchRequest} = useContext(AppContext);
   const [charts, setCharts] = useState([]);
