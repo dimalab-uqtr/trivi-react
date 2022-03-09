@@ -13,7 +13,7 @@ import { AppContext } from "./AppContext";
 import { itemTypeFrench } from "../constants/utils";
 
 export default () => {
-  TabTitle("Recommend");
+  TabTitle("Recommendation");
 
   const { fetchRequest } = useContext(AppContext);
   const [listRecommendLevels, setRecommendLevels] = useState({});
