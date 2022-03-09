@@ -96,11 +96,10 @@ export default () => {
     const mobile = data['mobile'] ? data['mobile'] : 0;
     const tablet = data['tablet'] ? data['tablet'] : 0;
     const sum = desktop + mobile + tablet;
-    
     return [
-      { id: 1, label: "Desktop", value: (desktop*100/sum).toFixed(2) || 0, color: "secondary", icon: faDesktop },
-      { id: 2, label: "Mobile Web", value: (mobile*100/sum).toFixed(2) || 0, color: "primary", icon: faMobileAlt },
-      { id: 3, label: "Tablet Web", value: (tablet*100/sum).toFixed(2) || 0, color: "tertiary", icon: faTabletAlt }
+      { id: 1, label: "Desktop", value: (desktop*100/sum).toFixed(0) || 0, color: "secondary", icon: faDesktop },
+      { id: 2, label: "Mobile Web", value: (mobile*100/sum).toFixed(0) || 0, color: "primary", icon: faMobileAlt },
+      { id: 3, label: "Tablet Web", value: (tablet*100/sum).toFixed(0) || 0, color: "tertiary", icon: faTabletAlt }
     ]
   };
 
