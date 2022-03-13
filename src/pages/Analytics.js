@@ -29,9 +29,12 @@ export default () => {
       "value": "none"
     },
   ]
+  const toDate = new Date();
+  const fromDate = new Date();
+  fromDate.setDate(fromDate.getDate() - 7);
   const {fetchRequest} = useContext(AppContext);
-  const [startDate, setStartDate] = useState('2021-01-01');
-  const [endDate, setEndDate] = useState((new Date()).toISOString().split('T')[0]);
+  const [startDate, setStartDate] = useState(fromDate.toISOString().split('T')[0]);
+  const [endDate, setEndDate] = useState(toDate.toISOString().split('T')[0]);
   const [groupType, setGroupType] = useState('daily');
   const [charts, setCharts] = useState([]);
 

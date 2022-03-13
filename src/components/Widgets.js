@@ -86,12 +86,12 @@ export const CounterWidget = (props) => {
               <h3 className="mb-1">{title}</h3>
             </div>
             <small>{period}, <FontAwesomeIcon icon={faGlobeEurope} size="xs" /> WorldWide</small>
-            <div className="small mt-2">
+            {/* <div className="small mt-2">
               <FontAwesomeIcon icon={percentageIcon} className={`${percentageColor} me-1`} />
               <span className={`${percentageColor} fw-bold`}>
                 {percentage}%
               </span> Since last month
-            </div>
+            </div> */}
           </Col>
         </Row>
       </Card.Body>

@@ -85,7 +85,7 @@ export default () => {
       <Container className="px-0">
         <Row className="d-flex flex-wrap flex-md-nowrap align-items-center pt-3">
           <Col className="d-block mb-2 mb-md-0">
-            <h1 className="h2">Synchronize Google Analytic Data</h1>
+            <h1 className="h2">Synchroniser des données Google Analytics</h1>
           </Col>
         </Row>
         <Row className="d-flex flex-wrap flex-md-nowrap align-items-center py-3">

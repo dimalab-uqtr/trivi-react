@@ -1,4 +1,4 @@
-export const domainPath = "http://localhost:8000/"
+export const domainPath = "http://74.208.108.4:8000/"
 export const itemTypeFrench = {
     "event": "événement",
     "article": "article",
