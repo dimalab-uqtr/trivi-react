@@ -139,7 +139,7 @@ export default () => {
       <Container className="px-0">
         <Row className="d-flex flex-wrap flex-md-nowrap align-items-center py-4">
           <Col className="d-block mb-4 mb-md-0">
-            <h1 className="h2">Génération d'API</h1>
+            <h1 className="h2">Génération des APIs</h1>
           </Col>
         </Row>
         <Row className="d-flex flex-wrap flex-md-nowrap justify-content-center align-items-center py-4">
@@ -150,7 +150,7 @@ export default () => {
                   <Nav fill variant="pills" className="flex-column flex-sm-row">
                     <Nav.Item>
                       <Nav.Link eventKey="fixedlink" className="mb-sm-3 mb-md-0">
-                        Lien fixé de recommendation intégré dans le site Web
+                        Lien de recommendation fixé
                       </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
@@ -158,7 +158,7 @@ export default () => {
                         eventKey="dynamiclink"
                         className="mb-sm-3 mb-md-0"
                       >
-                        Lien dynamique de recommendation intégré dans le site Web
+                        Lien de recommendation dynamique
                       </Nav.Link>
                     </Nav.Item>
                   </Nav>

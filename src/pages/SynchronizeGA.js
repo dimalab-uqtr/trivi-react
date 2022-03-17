@@ -111,7 +111,7 @@ export default () => {
                     </Form.Group>  : <></>
                 }
                 <Form.Group className="mb-3 col-6">
-                    <Form.Label>View ID/Profile ID</Form.Label>
+                    <Form.Label>View ID/Property ID</Form.Label>
                     <Form.Control
                         type="text"
                         value={viewID}

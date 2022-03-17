@@ -75,7 +75,7 @@ export default () => {
       <Container className="px-0">
         <Row className="d-flex flex-wrap flex-md-nowrap align-items-center py-4">
           <Col className="d-block mb-4 mb-md-0">
-            <h1 className="h2">Recommender congifuration</h1>
+            <h1 className="h2">Configuration</h1>
           </Col>
         </Row>
         <Row className="d-flex flex-wrap flex-md-nowrap justify-content-center align-items-center py-4">
@@ -87,11 +87,6 @@ export default () => {
                     <Nav.Item>
                       <Nav.Link eventKey="home" className="mb-sm-3 mb-md-0">
                        Items les plus populaires
-                      </Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                      <Nav.Link eventKey="profile" className="mb-sm-3 mb-md-0">
-                       Items à venir
                       </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
@@ -131,8 +126,6 @@ export default () => {
                           </Button>
                         </Row>
                       </Form>
-                    </Tab.Pane>
-                    <Tab.Pane eventKey="profile" className="py-4">
                     </Tab.Pane>
                     <Tab.Pane eventKey="messages" className="py-4">
                       <Form

@@ -89,7 +89,7 @@ export default class Signin extends Component {
                     onSubmit={(e) => this.handleLogin(e, this.state)}
                   >
                     <Form.Group id="email" className="mb-4">
-                      <Form.Label>Email</Form.Label>
+                      <Form.Label>Nom d'utilisateur</Form.Label>
                       <InputGroup>
                         <InputGroup.Text>
                           <FontAwesomeIcon icon={faEnvelope} />

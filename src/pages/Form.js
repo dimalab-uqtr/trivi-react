@@ -313,7 +313,7 @@ export default () => {
                 <FormElement
                   formInfo={formInfo}
                   handleChangeValue={handleChangeValue}
-                  formName={"event"}
+                  formName={itemTypeFrench[itemType]}
                   handleAddElement={handleAddElement}
                   handleRemoveElement={handleRemoveElement}
                 />

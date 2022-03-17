@@ -25,7 +25,7 @@ export default () => {
   const [listTemplates, setListTemplates] = useState([]);
   const [template, setTemplate] = useState([]);
 
-  TabTitle(`Importer une API - ${itemType}`);
+  TabTitle(`Importer un API - ${itemType}`);
 
   useEffect(() => {
     fetchRequest(`dimadb/get-mapping-templates/${itemType}/`, 'GET')
