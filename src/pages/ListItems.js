@@ -30,7 +30,7 @@ export default () => {
       })
     : [];
   const columns = searchItems.length
-    ? Object.keys(searchItems[0]).map((key) => {
+    ? Object.keys(searchItems[0]).filter(v => v !== 'id').map((key) => {
         return { Header: key, accessor: key };
       })
     : [];
@@ -53,8 +53,10 @@ export default () => {
   };
 
   const handleViewDetail = (row) => {
-    const id = row["id"];
-    const url = `/data-management/detail/${itemType}/${id}`;
+    const item_id_name = Object.keys(row)[0];
+    const item_id = row[item_id_name];
+    const id = searchItems.filter(item => item[item_id_name] == item_id)[0]['id'];
+    const url = `/data-management/detail/${itemType}/${id}`
     history.push(url);
   };
 
@@ -115,16 +117,37 @@ export default () => {
           <Col className="d-block mb-4 mb-md-0">
             <h1 className="h2">Liste des {itemTypeFrench[itemType]}s</h1>
           </Col>
+          <Col xs={3} className="mb-4">
+            <Form.Group>
+              <InputGroup className="input-group-merge">
+                <Form.Control
+                  type="text"
+                  placeholder="Recherche de mots clés"
+                  onKeyPress={(e) => {
+                    if (e.key === "Enter") {
+                      searchKeyWord(e.target.value);
+                    }
+                  }}
+                />
+                <InputGroup.Text>
+                  <FontAwesomeIcon
+                    icon={faSearch}
+                    style={{ cursor: "pointer" }}
+                  />
+                </InputGroup.Text>
+              </InputGroup>
+            </Form.Group>
+          </Col>
         </Row>
         <Row>
-          <Col xs={9} className="mb-4">
+          <Col xs={12} className="mb-4">
             {isViewDetail ? (
               <Button
                 variant="primary"
                 className="m-1"
                 onClick={() => handleNewItem()}
               >
-                Créer un {itemTypeFrench[itemType]}
+                Créer un(e) {itemTypeFrench[itemType]}
               </Button>
             ) : (
               <></>
@@ -148,7 +171,7 @@ export default () => {
                   className="m-1"
                   onClick={() => handleImportAPI()}
                 >
-                  Importer un API
+                  Importer via API
                 </Button>
               ) : (
                 <></>
@@ -161,7 +184,7 @@ export default () => {
                   className="m-1"
                   onClick={() => handleImportGA()}
                 >
-                  Importer GA
+                  Importer de GA
                 </Button>
               ) : (
                 <></>
@@ -192,27 +215,6 @@ export default () => {
             >
               Supprimer un fichier
             </Button>
-          </Col>
-          <Col xs={3} className="mb-4">
-            <Form.Group>
-              <InputGroup className="input-group-merge">
-                <Form.Control
-                  type="text"
-                  placeholder="Recherche de mots clés"
-                  onKeyPress={(e) => {
-                    if (e.key === "Enter") {
-                      searchKeyWord(e.target.value);
-                    }
-                  }}
-                />
-                <InputGroup.Text>
-                  <FontAwesomeIcon
-                    icon={faSearch}
-                    style={{ cursor: "pointer" }}
-                  />
-                </InputGroup.Text>
-              </InputGroup>
-            </Form.Group>
           </Col>
         </Row>
         {columns.length > 0 ? (

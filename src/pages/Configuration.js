@@ -86,12 +86,12 @@ export default () => {
                   <Nav fill variant="pills" className="flex-column flex-sm-row">
                     <Nav.Item>
                       <Nav.Link eventKey="home" className="mb-sm-3 mb-md-0">
-                       Items les plus populaires
+                       Produits les plus populaires
                       </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
                       <Nav.Link eventKey="messages" className="mb-sm-3 mb-md-0">
-                       Items similaires
+                       Produits similaires
                       </Nav.Link>
                     </Nav.Item>
                   </Nav>
@@ -133,7 +133,7 @@ export default () => {
                         onSubmit={(e) => handleSubmitSimilar(e)}
                       >
                         <Form.Group className="mb-3 col-6">
-                          <Form.Label>Types d’items</Form.Label>
+                          <Form.Label>Types de produits culturels</Form.Label>
                           <Form.Control
                             as="select"
                             value={itemType}

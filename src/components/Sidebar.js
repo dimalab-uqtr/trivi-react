@@ -194,7 +194,7 @@ export default (props = {}) => {
               />
               <CollapsableNavItem
                 eventKey="recommend/"
-                title="Recommendation"
+                title="Recommandation"
                 icon={faShareAlt}
               >
                 <NavItem
@@ -202,7 +202,7 @@ export default (props = {}) => {
                   link={Routes.Configuration.path}
                 />
                 <NavItem
-                  title="Génération des APIs"
+                  title="Génération des scripts"
                   link={Routes.Recommend.path}
                 />
               </CollapsableNavItem>

@@ -144,7 +144,7 @@ export default () => {
         </Col>
 
         <Col xs={12} sm={6} xl={4} className="mb-4">
-          <CircleChartWidget title="Traffic Web" data={trafficShares(traffic)} />
+          <CircleChartWidget title="Trafic Web" data={trafficShares(traffic)} />
         </Col>
         {charts.map((chart, index) => (
           <Col xs={12} xl={6} sm={6} className="mb-4" key={index}>

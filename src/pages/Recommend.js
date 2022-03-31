@@ -14,6 +14,68 @@ import { TabTitle } from "../constants/generalFunctions";
 import { AppContext } from "./AppContext";
 import { itemTypeFrench } from "../constants/utils";
 
+function ClipboardCopy({ label, copyText }) {
+  const [isCopied, setIsCopied] = useState(false);
+
+  // TODO: Implement copy to clipboard functionality
+  // This is the function we wrote earlier
+  async function copyTextToClipboard(text) {
+    if ('clipboard' in navigator) {
+      return await navigator.clipboard.writeText(text);
+    } else {
+      let textArea = document.createElement("textarea");
+        textArea.value = text;
+        // make the textarea out of viewport
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        return new Promise((res, rej) => {
+            // here the magic happens
+            document.execCommand('copy') ? res() : rej();
+            textArea.remove();
+        });
+    }
+  }
+
+  // onClick handler function for the copy button
+  const handleCopyClick = () => {
+    // Asynchronously call copyTextToClipboard
+    copyTextToClipboard(copyText)
+      .then(() => {
+        // If successful, update the isCopied state value
+        setIsCopied(true);
+        setTimeout(() => {
+          setIsCopied(false);
+        }, 2000)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  return (
+    <Form.Group className="mb-3 col-12">
+      <Row className="d-flex flex-wrap flex-md-nowrap align-items-center pt-3">
+        <Col className="col-11">
+          <Form.Label className="h2">
+            {label}
+          </Form.Label>
+        </Col>
+        <Col className="col-1">
+          <Button onClick={handleCopyClick}>
+            <span>{isCopied ? 'Copié!' : 'Copier'}</span>
+          </Button>
+        </Col>
+      </Row>
+      <Form.Control as="textarea" value={copyText} rows={12} readOnly />
+    </Form.Group>
+  );
+}
+
+
 export default () => {
   TabTitle("Recommendation");
 
@@ -139,7 +201,7 @@ export default () => {
       <Container className="px-0">
         <Row className="d-flex flex-wrap flex-md-nowrap align-items-center py-4">
           <Col className="d-block mb-4 mb-md-0">
-            <h1 className="h2">Génération des APIs</h1>
+            <h1 className="h2">Génération des scripts</h1>
           </Col>
         </Row>
         <Row className="d-flex flex-wrap flex-md-nowrap justify-content-center align-items-center py-4">
@@ -150,7 +212,7 @@ export default () => {
                   <Nav fill variant="pills" className="flex-column flex-sm-row">
                     <Nav.Item>
                       <Nav.Link eventKey="fixedlink" className="mb-sm-3 mb-md-0">
-                        Lien de recommendation fixé
+                        Scripts de recommandation fixés
                       </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
@@ -158,30 +220,20 @@ export default () => {
                         eventKey="dynamiclink"
                         className="mb-sm-3 mb-md-0"
                       >
-                        Lien de recommendation dynamique
+                        Scripts de recommandation dynamiques
                       </Nav.Link>
                     </Nav.Item>
                   </Nav>
                   <Tab.Content>
                     <Tab.Pane eventKey="fixedlink" className="py-4">
                       {embeddedFixedLinks.map((item, index) => (
-                        <Form.Group className="mb-3 col-12" key={index}>
-                          <Form.Label className="h2">
-                            {item.name}
-                          </Form.Label>
-                          <Form.Control
-                            as="textarea"
-                            value={item.link}
-                            rows={15}
-                            readOnly
-                          />
-                        </Form.Group>
+                        <ClipboardCopy key={index} label={item.name} copyText={item.link}/>
                       ))}
                     </Tab.Pane>
                     <Tab.Pane eventKey="dynamiclink" className="py-4">
                       <Form className="row" onSubmit={(e) => handleSubmit(e)}>
                         <Form.Group className="mb-3 col-6">
-                          <Form.Label>Types d’items</Form.Label>
+                          <Form.Label>Types de produits</Form.Label>
                           <Form.Control
                             as="select"
                             value={itemType}
@@ -220,7 +272,7 @@ export default () => {
                             {Object.keys(listRecommendLevels).map(
                               (item, index) => (
                                 <option value={item} key={index}>
-                                  {item}
+                                  {listRecommendLevels[item].displayName}
                                 </option>
                               )
                             )}
@@ -228,7 +280,7 @@ export default () => {
                         </Form.Group>
                         {level === "Domain" ? (
                           <Form.Group className="mb-3 col-6">
-                            <Form.Label>Domain</Form.Label>
+                            <Form.Label>Domaines</Form.Label>
                             <Form.Control
                               as="select"
                               value={domain}
@@ -250,7 +302,7 @@ export default () => {
                         )}
                         {level === "Item" ? (
                           <Form.Group className="mb-3 col-6">
-                            <Form.Label>{itemType}</Form.Label>
+                            <Form.Label>Produits</Form.Label>
                             <Form.Control
                               as="select"
                               value={item}
@@ -288,9 +340,9 @@ export default () => {
                               Dérouler ce menu de sélection
                             </option>
                             {listRecommendLevels[level] ? (
-                              listRecommendLevels[level].map((item, index) => (
-                                <option value={item} key={index}>
-                                  {item}
+                              listRecommendLevels[level]['algorithms'].map((item, index) => (
+                                <option value={item['name']} key={index}>
+                                  {item['displayName']}
                                 </option>
                               ))
                             ) : (
@@ -318,7 +370,7 @@ export default () => {
                               className="m-1"
                               type="submit"
                             >
-                              Générer une API
+                              Générer des scripts
                             </Button>
                           </Col>
                         </Row>
@@ -355,17 +407,7 @@ export default () => {
                         <Form.Control type="text" value={apiKey} readOnly />
                       </Form.Group> */}
                             {embeddedDynamicLinks.map((item, index) => (
-                              <Form.Group className="mb-3 col-12" key={index}>
-                                <Form.Label className="h2">
-                                  {item.name}
-                                </Form.Label>
-                                <Form.Control
-                                  as="textarea"
-                                  value={item.link}
-                                  rows={15}
-                                  readOnly
-                                />
-                              </Form.Group>
+                              <ClipboardCopy key={index} label={item.name} copyText={item.link}/>
                             ))}
                           </Form>
                         </>

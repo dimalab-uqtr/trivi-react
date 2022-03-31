@@ -44,7 +44,6 @@ export default () => {
   const handleCloseModal = () => {setShowModal(false)};
 
   const handleImportAPI = () => {
-    window.gtag('event', 'import_api');
     fetchRequest(`dimadb/import-api/${itemType}/`, 'POST',
     JSON.stringify({
       itemType: itemType,
@@ -67,7 +66,7 @@ export default () => {
       <Container className="px-0">
         <Row className="d-flex flex-wrap flex-md-nowrap align-items-center pt-3">
           <Col className="d-block mb-2 mb-md-0">
-            <h1 className="h2">Importer une API - {itemTypeFrench[itemType]}</h1>
+            <h1 className="h2">Importer via API - {itemTypeFrench[itemType]}</h1>
           </Col>
         </Row>
         <Row className="d-flex flex-wrap flex-md-nowrap align-items-center py-3">

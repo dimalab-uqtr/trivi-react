@@ -274,7 +274,7 @@ export default () => {
     )
       .then((data) => {
         alert(
-          `${id === "form" ? "Créé" : "Mise à jour"} ce ${itemTypeFrench[itemType]}`
+          `${id === "form" ? "Créé" : "Mise à jour"}`
         );
         if (id === "form") {
           history.go(-1);
@@ -292,7 +292,7 @@ export default () => {
       JSON.stringify(formInfo)
     )
       .then((data) => {
-        alert(`Supprimé ce ${itemTypeFrench[itemType]}`);
+        alert(`Supprimé`);
         history.go(-1);
       })
       .catch((err) => alert(err));
@@ -301,11 +301,6 @@ export default () => {
   return (
     <article>
       <Container className="px-0">
-        <Row className="d-flex flex-wrap flex-md-nowrap align-items-center pt-3">
-          <Col className="d-block mb-2 mb-md-0">
-            <h1 className="h2">Form</h1>
-          </Col>
-        </Row>
         <Row className="d-flex flex-wrap flex-md-nowrap align-items-center py-3">
           <Col xs={12} className="mb-4">
             {!_.isEmpty(formInfo) ? (
@@ -339,7 +334,7 @@ export default () => {
                             />
                           </Modal.Header>
                           <Modal.Body>
-                            <p>Veuillez-vous enregistrer ce {itemTypeFrench[itemType]} ?</p>
+                            <p>Veuillez-vous enregistrer ce prduit culturel ?</p>
                           </Modal.Body>
                           <Modal.Footer>
                             <Button
@@ -393,8 +388,8 @@ export default () => {
                           </Modal.Header>
                           <Modal.Body>
                             <p>
-                              Veuillez-vous {formState ? "supprimer" : "mettre à jour"}{" ce "}
-                              {itemTypeFrench[itemType]} {id} ?
+                              Veuillez-vous {formState ? "supprimer" : "mettre à jour"}{" ce produit culturel"}
+                               ?
                             </p>
                           </Modal.Body>
                           <Modal.Footer>

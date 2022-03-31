@@ -83,7 +83,7 @@ export default () => {
                     <Form.Label>Télécharger un fichier</Form.Label>
                     <Form.Control 
                         type="text"
-                        value={inputFile ? inputFile.name : "Choisir un fichier de json"}
+                        value={inputFile ? inputFile.name : "Choisir un fichier de json (extension de fichier .json)"}
                         onClick={() => handleChooseFile()}
                         readOnly
                     />

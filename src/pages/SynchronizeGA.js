@@ -45,6 +45,9 @@ export default () => {
 
     if (inputFileName)
         setShowModal(true);
+    else {
+      alert("Add json key file")
+    }
   };
 
   const handleCloseModal = () => {setShowModal(false)};
@@ -111,7 +114,7 @@ export default () => {
                     </Form.Group>  : <></>
                 }
                 <Form.Group className="mb-3 col-6">
-                    <Form.Label>View ID/Property ID</Form.Label>
+                    <Form.Label>ID de la vue ou de propriété</Form.Label>
                     <Form.Control
                         type="text"
                         value={viewID}
@@ -125,7 +128,7 @@ export default () => {
                     <Form.Label>Télécharger le fichier de clé JSON</Form.Label>
                     <Form.Control 
                         type="text"
-                        value={inputFileName ? inputFileName : "Choisir un fichier de json"}
+                        value={inputFileName ? inputFileName : "Choisir un fichier de json (extension de fichier .json)"}
                         onClick={() => handleChooseFile()}
                         readOnly
                     />
@@ -180,7 +183,7 @@ export default () => {
                             />
                             </Modal.Header>
                             <Modal.Body>
-                            <p>Veuillez-vous synchroniser les données avec Google Analytics ?</p>
+                            <p>Veuillez-vous synchroniser des données avec Google Analytics ?</p>
                             </Modal.Body>
                             <Modal.Footer>
                             <Button
